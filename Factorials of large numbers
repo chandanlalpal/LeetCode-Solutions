@@ -1,0 +1,40 @@
+// User function Template for Java
+
+class Solution {
+    public static ArrayList<Integer> factorial(int n) {
+       
+        // code here
+        int carry=0;
+        ArrayList<Integer> nums= new ArrayList<>();
+        nums.add(1);
+         if(n==1) return nums;
+        for( int i=2;i<=n;i++){
+            int len= nums.size();
+            
+            for(int j=0;j<len;j++){
+                int digMul=nums.get(j)*i +carry;
+                int firDig= digMul%10;
+                int secDig=digMul/10; 
+                add(nums,len,firDig,j);
+                carry=secDig;
+                }
+                    while(carry!=0){
+                        int rem= carry%10;
+                        carry=carry/10;
+                         nums.add(rem);
+                    }
+            }
+            
+        Collections.reverse(nums);
+        return nums;
+    }
+    public static void add(ArrayList<Integer> nums,int len, int data, int idx){
+     if(idx<len){
+         // insert opreration
+         nums.set(idx,data);
+     }else{
+         //add operation
+         nums.add(data);
+     }
+    }
+}
